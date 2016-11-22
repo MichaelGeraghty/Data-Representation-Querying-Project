@@ -3,6 +3,7 @@ from flask import render_template,request
 
 from forms import GetQuestion
 
+
 from random import randint
 
 @app.route('/')
@@ -58,3 +59,14 @@ def get_question():
         return render_template('index.html', form=form,response=response )
     if request.method == 'GET':	
 		return render_template('index.html', form=form)
+		
+    
+@app.route('/lotto/')
+def game():
+    game_nums = []
+    while len(game_nums) < 5:
+        n = randint(1,50)
+        if not n in game_nums:
+            game_nums.append(n)
+    return render_template('test1.html',game_nums = game_nums)
+ 
