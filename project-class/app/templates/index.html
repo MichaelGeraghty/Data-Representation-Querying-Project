@@ -9,22 +9,22 @@
     </head>
     
     <body>
-        <div>
+        <div id =8ball style="display:none;">
             <form action="" method="post" name="get_question">
                 {{ form.hidden_tag() }}
                 <label for="question">Your question:</label>
         		{{ form.question }}</br>
         		<input type="submit">
         	</form>
+            <p>{{response}}</p>
         </div>
-        <p>{{response}}</p>
         
-        <a href="javascript:showhide('uniquename')">
+        <a href="javascript:showhide('8ball')">
         Click to show/hide.
         </a>
 
         <div id="uniquename" style="display:none;">
-        <p>Content goes here.</p>
+            
         </div>
     </body>
 </html>
