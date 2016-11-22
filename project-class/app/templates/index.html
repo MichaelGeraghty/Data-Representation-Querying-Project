@@ -1,6 +1,11 @@
 <html>
     <head>
-        
+        <script type="text/javascript">
+         function showhide(id) {
+            var e = document.getElementById(id);
+            e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+         }
+</script>
     </head>
     
     <body>
@@ -13,5 +18,13 @@
         	</form>
         </div>
         <p>{{response}}</p>
+        
+        <a href="javascript:showhide('uniquename')">
+        Click to show/hide.
+        </a>
+
+        <div id="uniquename" style="display:none;">
+        <p>Content goes here.</p>
+        </div>
     </body>
 </html>
