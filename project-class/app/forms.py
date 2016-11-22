@@ -5,3 +5,4 @@ from wtforms.validators import Required
 
 class GetQuestion(Form):
     question = TextField('question')
+    
