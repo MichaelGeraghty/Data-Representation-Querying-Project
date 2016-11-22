@@ -1,31 +1,57 @@
 <html>
     <head>
-        
-       <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-        
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            
+            $(document).ready(function(){
+			// use localStorage.removeItem('show'); to unset an item
+			var show = localStorage.getItem('show');
+			if(show === 'true'){
+				$('#rawr').show();
+			}
+			
+			$("#btn").click(function(event){
+				event.preventDefault();
+				$('#rawr').show();
+				localStorage.setItem('show', 'true');
+				//localStorage.removeItem('show');
+				console.log("hey");
+			});
+			
+			$("#btn2").click(function(event){
+				event.preventDefault();
+				$('#rawr').hide();
+				localStorage.setItem('show', 'false');
+				localStorage.removeItem('show');
+				console.log("hey");
+			});
+		});
+            
+        </script>
     </head>
     
     <body>
-        <div>
-            <form action="" method="post" name="get_question" onsubmit="myFunction()">
+        <form method="post" action="#">
+			<input type="button" value="Show" id="btn"/>
+		</form>
+		
+		<form method="post" action="#">
+			<input type="button" value="Show2" id="btn2"/>
+		</form>
+        
+        <div id="rawr" style="display:none;" >
+            <form action="" method="post" name="get_question">
                 {{ form.hidden_tag() }}
                 <label for="question">Your question:</label>
         		{{ form.question }}</br>
-        		<input type="submit" value="Submit">
+        		<input type="submit">
         	</form>
             <p>{{response}}</p>
         </div>
-        <script>
-            function myFunction() {
-                alert("The form was submitted");
-            }
-        </script>
+        
+        <div id="rawr2" style="display:none;" >
+            <p>{{response}}</p>
+        </div>
+
     </body>
 </html>
