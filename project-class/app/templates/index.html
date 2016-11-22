@@ -5,7 +5,12 @@
     
     <body>
         <div>
-          <p>Hello</p>
+            <form action="" method="post" name="get_question">
+                {{ form.hidden_tag() }}
+                <label for="question">Your question:</label>
+        		{{ form.question }}</br>
+        		<input type="submit">
+        	</form>
         </div>
     </body>
 </html>
