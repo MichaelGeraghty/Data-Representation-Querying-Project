@@ -58,4 +58,3 @@ def get_question():
         return render_template('index.html', form=form,response=response )
     if request.method == 'GET':	
 		return render_template('index.html', form=form)
-   
