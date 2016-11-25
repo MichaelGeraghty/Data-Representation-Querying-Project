@@ -10,7 +10,7 @@ from random import randint
 def index():
 	return render_template('index.html')
 
-@app.route('/8ball', methods=['GET', 'POST'])
+@app.route('/8ball/', methods=['GET', 'POST'])
 def get_question():
     form = GetQuestion()
     if request.method == 'POST':
@@ -69,5 +69,5 @@ def game():
         if not n in game_nums:
             game_nums.append(n)
             game_nums.sort()
-    return render_template('test1.html',game_nums = game_nums)
+    return render_template('index.html',game_nums = game_nums)
  
