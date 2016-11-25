@@ -7,10 +7,12 @@ from forms import GetQuestion
 from random import randint
 
 @app.route('/')
-def index():
-	return render_template('index.html')
+def home():
+    form = GetQuestion()
+    return render_template('index.html',form = form)
+		
 
-@app.route('/8ball', methods=['GET', 'POST'])
+@app.route('/8ball/', methods=['GET', 'POST'])
 def get_question():
     form = GetQuestion()
     if request.method == 'POST':
@@ -56,10 +58,9 @@ def get_question():
             response = "Outlook not so good"
         elif choice ==20:
             response = "Very doubtful"
-        return render_template('index.html', form=form,response=response )
+        return render_template('index.html', form=form,response=response)
     if request.method == 'GET':	
 		return render_template('index.html', form=form)
-		
     
 @app.route('/lotto/')
 def game():
@@ -69,5 +70,4 @@ def game():
         if not n in game_nums:
             game_nums.append(n)
             game_nums.sort()
-    return render_template('test1.html',game_nums = game_nums)
- 
+    return render_template('base.html',game_nums = game_nums)
