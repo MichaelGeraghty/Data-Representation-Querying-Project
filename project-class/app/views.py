@@ -70,4 +70,4 @@ def game():
         if not n in game_nums:
             game_nums.append(n)
             game_nums.sort()
-    return render_template('base.html',game_nums = game_nums)
+    return render_template('index.html',game_nums = game_nums)
