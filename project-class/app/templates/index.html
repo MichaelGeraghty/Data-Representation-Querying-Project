@@ -29,7 +29,7 @@
 			});
 			
 			$( "#shaked" ).click(function() {
-              $( "#toggle" ).effect( "shake", {times:8} );
+              $( "#toggle" ).effect( "shake" );
             });
 		});
         		
@@ -45,7 +45,7 @@
                     
         window.onload = function(){
             // Change this value to however many seconds you want to delay the text by.
-            var theDelay = 2;
+            var theDelay = 1;
             var timer = setTimeout("showText()",theDelay*1000)
         }
         function showText(){
@@ -150,9 +150,6 @@
         <div id="rawr" style="display:none;">
             <div id="toggle">
                 <image src= "http://appinventor.mit.edu/explore/sites/all/files/ai2tutorials/magic8ball/magic8ball.jpg" alt="" id="img"></image>
-                <div id="delayedText" style="visibility:hidden">
-                <h5 id="text">{{response}}</h5>
-            </div>
             </div>
             
             <form action="" method="post" name="get_question" id="form">
@@ -162,7 +159,9 @@
         		<center><input type="submit" id="shaked"></center>
         	</form>
         	
-        	
+        	<div id="delayedText" style="visibility:hidden">
+                <h5 id="text">{{response}}</h5>
+            </div>
             
         </div>
         
