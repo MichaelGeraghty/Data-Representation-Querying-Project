@@ -6,14 +6,14 @@ from forms import GetQuestion
 
 from random import randint
 
-@app.route('/')
-def home():
-    form = GetQuestion()
-    return render_template('index.html',form = form)
-		
-
-@app.route('/8ball/', methods=['GET', 'POST'])
-def get_question():
+@app.route('/', methods=['GET', 'POST'])
+def setup():
+    game_nums = []
+    while len(game_nums) < 6:
+        n = randint(1,47)
+        if not n in game_nums:
+            game_nums.append(n)
+            game_nums.sort()
     form = GetQuestion()
     if request.method == 'POST':
         choice = randint(1,20)
@@ -58,16 +58,6 @@ def get_question():
             response = "Outlook not so good"
         elif choice ==20:
             response = "Very doubtful"
-        return render_template('index.html', form=form,response=response)
+        return render_template('index.html', form=form,response=response, game_nums = game_nums)
     if request.method == 'GET':	
-		return render_template('index.html', form=form)
-    
-@app.route('/lotto/')
-def game():
-    game_nums = []
-    while len(game_nums) < 6:
-        n = randint(1,47)
-        if not n in game_nums:
-            game_nums.append(n)
-            game_nums.sort()
-    return render_template('index.html',game_nums = game_nums)
+		return render_template('index.html', form=form,game_nums = game_nums)
