@@ -169,9 +169,12 @@
         </div>
         
         <div id="rawr2" style="display:none;" >
-              <p>Your winning numbers are ...</p>
-              <p>{% for num in game_nums %}{{ num }} {% endfor %}</p>
-              <p>Good Luck @Irish Lotto</p>
+            <div id="toggle">
+                <image src= "http://www.clipartkid.com/images/134/ticket-clip-art-at-clker-com-vector-clip-art-online-royalty-free-PNSq3R-clipart.png" alt="" id="img"></image>
+            </div>
+            
+                <h2 id="text">{% for num in game_nums %}{{ num }} {% endfor %}</h2>
+            
         </div>
 
     </body>
