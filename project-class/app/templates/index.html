@@ -28,11 +28,15 @@
 			{
         		$('#rawr').show();
         		$('#rawr2').hide();
+        		
+        		document.body.style.backgroundImage = "url('http://cdn.wallpapersafari.com/51/45/3PvngH.jpg')";
 			}
 		    else if(show1 === "true")
 		    {
 		        $('#rawr').hide();
         		$('#rawr2').show();
+        		
+        		document.body.style.backgroundImage = "url('http://p.motionelements.com/stock-video/business/me6901597-lottery-balls-loopable-background-hd-a0005.jpg')";
 		    }
 		    else if(show != "true" && show1 != "true")
 		    {
@@ -50,6 +54,8 @@
 				localStorage.setItem('show', 'true');
 				localStorage.removeItem('show1');
 				localStorage.removeItem('show3');
+				
+				document.body.style.backgroundImage = "url('http://cdn.wallpapersafari.com/51/45/3PvngH.jpg')";
 			});
 			
 			$("#btn2").click(function(event){
@@ -60,6 +66,8 @@
 				localStorage.setItem('show1', 'true');
 				localStorage.removeItem('show');
 				localStorage.removeItem('show3');
+				
+				document.body.style.backgroundImage = "url('http://p.motionelements.com/stock-video/business/me6901597-lottery-balls-loopable-background-hd-a0005.jpg')";
 			});
 			
 			$("#btn3").click(function(event){
@@ -70,6 +78,8 @@
 				localStorage.setItem('show3', 'true');
 				localStorage.removeItem('show');
 				localStorage.removeItem('show1');
+				
+				document.body.style.backgroundImage = "url('')";
 			});
 			
 			$( "#shaked" ).click(function() {
@@ -141,7 +151,6 @@
             <div id="toggle">
                 <image src= "http://www.clipartkid.com/images/134/ticket-clip-art-at-clker-com-vector-clip-art-online-royalty-free-PNSq3R-clipart.png" alt="" id="img"></image>
             </div>
-            
                 <h2 id="text">{% for num in game_nums %}{{ num }} {% endfor %}</h2>
         </div>
     </body>
