@@ -2,10 +2,6 @@ from app import app
 
 from flask import render_template,request,jsonify
 
-
-from forms import GetQuestion
-
-
 from random import randint
 
 """@app.route('/lotto/')

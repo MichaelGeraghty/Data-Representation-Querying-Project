@@ -254,6 +254,8 @@
         }
         </script>
     </head>
+        </script>
+    </head>
     <body>
         
         <div id="mySidenav" class="sidenav">
@@ -280,6 +282,10 @@
             </div>
         </div>
         
+        <div>
+            <span style="float:left; left:0px; top:0px;font-size:30px;cursor:pointer; color:white;" onclick="openNav()" >&#9776;Menu</span>
+        </div>
+        
         <div id="rawr" style="display:none;">
             <div id="toggle">
                 <image src= "http://appinventor.mit.edu/explore/sites/all/files/ai2tutorials/magic8ball/magic8ball.jpg" alt="" id="img"></image>
@@ -288,12 +294,10 @@
            <form>
            <center><input type=text name=question></center>
            <center><a href=# id=answer><button>Submit</button></a></center>
-           </form>
            
            <div id="delayedText" style="visibility:hidden">
                 	<center id="text"><h7 style="color:white;" id= "result">answer</h7></center>
             </div>
-            
         </div>
              
         <div id="rawr2" style="display:none;" >
@@ -305,6 +309,7 @@
             <center><h3 style="color:white;">Your lotto numbers for this week.Good Luck!</h3></center>
              <h2 id="text">{% for num in game_nums %}{{ num }} {% endfor %}</h2>
                <!-- <h2 id="result1">answer</h2> -->
+                
         </div>
         
         <div id="rawr3" style="display:none;" >

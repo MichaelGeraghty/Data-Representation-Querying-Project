@@ -85,12 +85,6 @@ body {
             min-height:200px;
         }
         
-        .half-witdh{
-            width: 100%;
-            min-width:50%;
-            min-height:200px;
-        }
-        
         #dieStyle{
             position: relative;
             left: 50px;
