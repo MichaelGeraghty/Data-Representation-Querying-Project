@@ -79,5 +79,4 @@ def index():
 @app.route('/die/')
 def get_die():
     a = randint(1,6)
-    b = randint(1,6)
-    return jsonify(result2 = a, result3 = b) 
+    return jsonify(result2 = a) 
