@@ -9,16 +9,11 @@
         
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<<<<<<< HEAD
-        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
-=======
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type=text/javascript href="{{ url_for('static', filename='script.js') }}"></script>
         
        
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
->>>>>>> 9680f284cee881b6154de679a4b15f56564747a9
          
         <script type="text/javascript">
         $(function() {
@@ -89,20 +84,19 @@
 				event.preventDefault();
 				$('#rawr').hide();
 				$('#rawr2').show();
-<<<<<<< HEAD
+
 				localStorage.setItem('show', 'true');
-=======
+
 				$('#welcome').hide();
 				localStorage.setItem('show1', 'true');
->>>>>>> 9680f284cee881b6154de679a4b15f56564747a9
+
 				localStorage.removeItem('show');
 				localStorage.removeItem('show3');
 				
 					document.body.style.backgroundImage = "url('https://p.motionelements.com/stock-video/business/me6901597-lottery-balls-loopable-background-hd-a0005.jpg')";
 			});
 			
-<<<<<<< HEAD
-=======
+
 			$("#btn3").click(function(event){
 				event.preventDefault();
 				$('#rawr').hide();
@@ -115,7 +109,7 @@
 				document.body.style.backgroundImage = "url('')";
 			});
 			
->>>>>>> 9680f284cee881b6154de679a4b15f56564747a9
+
 			$( "#shaked" ).click(function() {
               $( "#toggle" ).effect( "shake" );
             });
@@ -135,92 +129,15 @@
             // Change this value to however many seconds you want to delay the text by.
             var theDelay = 1;
             var timer = setTimeout("showText()",theDelay*1000)
-<<<<<<< HEAD
+
         }
         function showText(){
             document.getElementById("delayedText").style.visibility = "visible";
         }
         </script>
     </head>
-    <style>
-        body {
-            font-family: "Lato", sans-serif;
-=======
->>>>>>> 9680f284cee881b6154de679a4b15f56564747a9
-        }
-        function showText(){
-            document.getElementById("delayedText").style.visibility = "visible";
-        }
-<<<<<<< HEAD
-        
-        .sidenav a {
-            padding: 8px 8px 8px 32px;
-            text-decoration: none;
-            font-size: 25px;
-            color: #818181;
-            display: block;
-            transition: 0.3s;
-        }
-        
-        .sidenav a:hover, .offcanvas a:focus{
-            color: #f1f1f1;
-        }
-        
-        .sidenav .closebtn {
-            position: absolute;
-            top: 0;
-            right: 25px;
-            font-size: 36px;
-            margin-left: 50px;
-        }
-        
-        #main {
-            transition: margin-left .5s;
-        }
-        
-        #form {
-            margin: auto;
-            width: 300px;
-            height: 200px;
-        }
-        
-        #text
-        {
-            left: 0%;
-            line-height: 200px;
-            margin-top: -100px;
-            position: absolute;
-            text-align: center;
-            top: 47%;
-            width: 100%;
-            color: #ff33cc;
-        }
-        
-        #img {
-          height: 500px;
-          width: 500px;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          /* bring your own prefixes */
-          transform: translate(-50%, -50%);
-        }
-        
-         #toggle {
-          height: 500px;
-          width: 500px;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          /* bring your own prefixes */
-          transform: translate(-50%, -50%);
-        }
-        
-        </style>
-=======
         </script>
     </head>
->>>>>>> 9680f284cee881b6154de679a4b15f56564747a9
     <body>
         
         <div id="mySidenav" class="sidenav">
@@ -231,7 +148,6 @@
         </div>
         
         <div id="main">
-<<<<<<< HEAD
             <span style="float:left; left:0px; top:0px;font-size:30px;cursor:pointer" onclick="openNav()">&#9776;Menu</span>
         </div>
         
@@ -255,7 +171,6 @@
         
         <div id="rawr2" style="display:none;">
  
-=======
             <span style="float:left; left:0px; top:0px;font-size:30px;cursor:pointer; color:white;" onclick="openNav()" >&#9776;Menu</span>
         </div>
         
@@ -291,8 +206,6 @@
              <h2 id="text">{% for num in game_nums %}{{ num }} {% endfor %}</h2>
                <!-- <h2 id="result1">answer</h2> -->
                 
-                	
->>>>>>> 9680f284cee881b6154de679a4b15f56564747a9
         </div>
         
     </body>
