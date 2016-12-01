@@ -9,20 +9,34 @@
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
         <script type=text/javascript href="{{ url_for('static', filename='script.js') }}"></script>
         
-        <link rel="stylesheet" href="bootstrap.min.css"/>
-        <link rel="stylesheet" href="Login-Form-Dark.css"/>
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
          
         <script type="text/javascript">
+            $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+            
+            $(function() {
+                $('a#calculate').bind('click', function() {
+                  $.getJSON($SCRIPT_ROOT + '/_add_numbers/', {
+                    a: $('input[name="a"]').val(),
+                    b: $('input[name="b"]').val()
+                  }, function(data) {
+                    $("#result").text(data.result);
+                  });
+                  return false;
+                });
+              });
             
             $(document).ready(function(){
 			// use localStorage.removeItem('show'); to unset an item
 			var show = localStorage.getItem('show');
 			var show1 = localStorage.getItem('show1');
 			var show3 = localStorage.getItem('show3');
+			
+			$(window).on( 'resize', function () {
+                $('.half').height( $(window).height() / 2 );
+            }).resize();
 			
 			if(show === "true")
 			{
@@ -44,6 +58,44 @@
 		        $('#rawr').hide();
         		$('#rawr2').hide();
 		    }
+			
+			$("img.8ball").click(function(event){
+				event.preventDefault();
+				$('#rawr').show();
+				$('#rawr2').hide();
+				$('#welcome').hide();
+				
+				localStorage.setItem('show', 'true');
+				localStorage.removeItem('show1');
+				localStorage.removeItem('show3');
+				
+				document.body.style.backgroundImage = "url('http://cdn.wallpapersafari.com/51/45/3PvngH.jpg')";
+			});
+			
+			$("img.lotto").click(function(event){
+				event.preventDefault();
+				$('#rawr').hide();
+				$('#rawr2').show();
+				$('#welcome').hide();
+				localStorage.setItem('show1', 'true');
+				localStorage.removeItem('show');
+				localStorage.removeItem('show3');
+				
+				document.body.style.backgroundImage = "url('http://p.motionelements.com/stock-video/business/me6901597-lottery-balls-loopable-background-hd-a0005.jpg')";
+			});
+			
+			$("img.die").click(function(event){
+				event.preventDefault();
+				$('#rawr').hide();
+				$('#rawr2').hide();
+				$('#rawr3').show();
+				$('#welcome').hide();
+				localStorage.setItem('rawr3', 'true');
+				localStorage.removeItem('show');
+				localStorage.removeItem('show1');
+				
+				document.body.style.backgroundImage = "url('')";
+			});
 			
 			$("#btn").click(function(event){
 				event.preventDefault();
@@ -82,6 +134,19 @@
 				document.body.style.backgroundImage = "url('')";
 			});
 			
+			$("#btn4").click(function(event){
+				event.preventDefault();
+				$('#rawr').hide();
+				$('#rawr2').hide();
+				$('#rawr3').show();
+				$('#welcome').hide();
+				localStorage.setItem('rawr3', 'true');
+				localStorage.removeItem('show');
+				localStorage.removeItem('show1');
+				
+				document.body.style.backgroundImage = "url('')";
+			});
+			
 			$( "#shaked" ).click(function() {
               $( "#toggle" ).effect( "shake" );
             });
@@ -114,6 +179,7 @@
           <a href="#" id = "btn3" onclick="closeNav()">Home</a>
           <a href="#" id = "btn" onclick="closeNav()">8Ball</a>
           <a href="#" id = "btn2" onclick="closeNav()">Lottery</a>
+          <a href="#" id = "btn4" onclick="closeNav()">Dice</a>
         </div>
         
         <div id="main">
@@ -121,7 +187,15 @@
         </div>
         
         <div id="welcome" style="display:none;">
-            <p>Welcome!</p>
+            <div id="8ball" class="half">
+                <img src="http://is4.mzstatic.com/image/thumb/Purple1/v4/ad/8e/f2/ad8ef246-b1a6-419a-c407-b4ca7bdc0481/source/1200x630bf.jpg" style="float: left; width: 100%; height: 100%; margin-right: 1%; margin-bottom: 0.5em;" class="8ball">
+            </div>
+            <div>
+                <img src="http://d2tbfnbweol72x.cloudfront.net/wp-content/blogs.dir/1503/files/2014/06/lotto8.jpg" style="float: left; width: 40%;" class="lotto">
+            </div>
+            <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Two_red_dice_01.svg/2000px-Two_red_dice_01.svg.png" style="float: right; width: 40%;" class="die">
+            </div>
         </div>
         
         <div id="rawr" style="display:none;">

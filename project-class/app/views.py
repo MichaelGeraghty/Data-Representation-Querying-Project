@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template,request
+from flask import jsonify, render_template, request
 
 from forms import GetQuestion
 
@@ -61,3 +61,9 @@ def setup():
         return render_template('index.html', form=form,response=response, game_nums = game_nums)
     if request.method == 'GET':	
 		return render_template('index.html', form=form,game_nums = game_nums)
+
+@app.route('/_add_numbers/')
+def add_numbers():
+    a = request.args.get('a', 0, type=int)
+    b = request.args.get('b', 0, type=int)
+    return jsonify(result=a + b)
