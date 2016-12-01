@@ -7,17 +7,39 @@
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
         <script type=text/javascript href="{{ url_for('static', filename='script.js') }}"></script>
         
-        <link rel="stylesheet" href="bootstrap.min.css"/>
-        <link rel="stylesheet" href="Login-Form-Dark.css"/>
+       
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
          
         <script type="text/javascript">
-            
+        $(function() {
+            $('a#answer').bind('click',function() {
+              $.getJSON('/8ball', {
+                  question: $('input[name="question"]').val(),
+              }, function(data) {
+                $("#result").text(data.result);
+              });
+              return false;
+            });
+          });
+          
+     /*         
+          $(function() {
+            $('a#numbers').bind('click',function() {
+              $.getJSON('/lotto/', {
+              }, function(data) {
+                $("#result1").text(data.result);
+                console.log(result1)
+              });
+              return false;
+            });
+          });
+       */       
+              
             $(document).ready(function(){
 			// use localStorage.removeItem('show'); to unset an item
 			var show = localStorage.getItem('show');
@@ -28,11 +50,15 @@
 			{
         		$('#rawr').show();
         		$('#rawr2').hide();
+        		
+        		document.body.style.backgroundImage = "url('https://cdn.wallpapersafari.com/51/45/3PvngH.jpg')";
 			}
 		    else if(show1 === "true")
 		    {
 		        $('#rawr').hide();
         		$('#rawr2').show();
+        		
+        		document.body.style.backgroundImage = "url('https://p.motionelements.com/stock-video/business/me6901597-lottery-balls-loopable-background-hd-a0005.jpg')";
 		    }
 		    else if(show != "true" && show1 != "true")
 		    {
@@ -50,6 +76,8 @@
 				localStorage.setItem('show', 'true');
 				localStorage.removeItem('show1');
 				localStorage.removeItem('show3');
+				
+				document.body.style.backgroundImage = "url('https://cdn.wallpapersafari.com/51/45/3PvngH.jpg')";
 			});
 			
 			$("#btn2").click(function(event){
@@ -60,6 +88,8 @@
 				localStorage.setItem('show1', 'true');
 				localStorage.removeItem('show');
 				localStorage.removeItem('show3');
+				
+					document.body.style.backgroundImage = "url('https://p.motionelements.com/stock-video/business/me6901597-lottery-balls-loopable-background-hd-a0005.jpg')";
 			});
 			
 			$("#btn3").click(function(event){
@@ -70,6 +100,8 @@
 				localStorage.setItem('show3', 'true');
 				localStorage.removeItem('show');
 				localStorage.removeItem('show1');
+				
+				document.body.style.backgroundImage = "url('')";
 			});
 			
 			$( "#shaked" ).click(function() {
@@ -107,8 +139,9 @@
         </div>
         
         <div id="main">
-            <span style="float:left; left:0px; top:0px;font-size:30px;cursor:pointer" onclick="openNav()">&#9776;Menu</span>
+            <span style="float:left; left:0px; top:0px;font-size:30px;cursor:pointer; color:white;" onclick="openNav()" >&#9776;Menu</span>
         </div>
+        
         
         <div id="welcome" style="display:none;">
             <p>Welcome!</p>
@@ -118,31 +151,31 @@
             <div id="toggle">
                 <image src= "http://appinventor.mit.edu/explore/sites/all/files/ai2tutorials/magic8ball/magic8ball.jpg" alt="" id="img"></image>
             </div>
-            
-            <form action="" method="post" name="get_question" id="form">
-                <h2 class="sr-only">*-Ball Form</h2>
-                <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
-               
-                {{ form.hidden_tag() }}
-                <div class="form-group">
-                   <center> <label for="question">Ask the Magic 8 ball a question:</label></center>
-                </div>
-        	    <center>	{{ form.question }}</br></center>
-        		<center> <button class="btn btn-primary btn-block" type="submit" id="shaked">Submit</button></center>
-        	</form>
-        	
-        	<div id="delayedText" style="visibility:hidden">
-                <h5 id="text">{{response}}</h5>
+           <center><h3 style="color:white;">Ask the Magic 8 Ball a question</h3></center>
+           <form>
+           <center><input type=text name=question></center>
+           <center><a href=# id=answer><button>Submit</button></a></center>
+           </form>
+           
+           <div id="delayedText" style="visibility:hidden">
+                	<center><h5 style="color:white;" id=result>answer</h5></center>
             </div>
             
         </div>
-        
+             
+             
         <div id="rawr2" style="display:none;" >
+            
             <div id="toggle">
+               <!-- <center><a href=# id=numbers><button>Get new numbers</button></a></center>-->
                 <image src= "http://www.clipartkid.com/images/134/ticket-clip-art-at-clker-com-vector-clip-art-online-royalty-free-PNSq3R-clipart.png" alt="" id="img"></image>
             </div>
-            
-                <h2 id="text">{% for num in game_nums %}{{ num }} {% endfor %}</h2>
+            <center><h3 style="color:white;">Your lotto numbers for this week.Good Luck!</h3></center>
+             <h2 id="text">{% for num in game_nums %}{{ num }} {% endfor %}</h2>
+               <!-- <h2 id="result1">answer</h2> -->
+                
+                	
         </div>
+        
     </body>
 </html>
