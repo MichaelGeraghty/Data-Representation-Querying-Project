@@ -1,33 +1,121 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<<<<<<< HEAD
         <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+=======
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type=text/javascript href="{{ url_for('static', filename='script.js') }}"></script>
+        
+       
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+>>>>>>> 9680f284cee881b6154de679a4b15f56564747a9
          
         <script type="text/javascript">
-            
+        $(function() {
+            $('a#answer').bind('click',function() {
+              $.getJSON('/8ball', {
+                  question: $('input[name="question"]').val(),
+              }, function(data) {
+                $("#result").text(data.result);
+              });
+              return false;
+            });
+          });
+          
+     /*         
+          $(function() {
+            $('a#numbers').bind('click',function() {
+              $.getJSON('/lotto/', {
+              }, function(data) {
+                $("#result1").text(data.result);
+                console.log(result1)
+              });
+              return false;
+            });
+          });
+       */       
+              
             $(document).ready(function(){
 			// use localStorage.removeItem('show'); to unset an item
 			var show = localStorage.getItem('show');
-			if(show === 'true'){
-				$('#rawr').show();
+			var show1 = localStorage.getItem('show1');
+			var show3 = localStorage.getItem('show3');
+			
+			if(show === "true")
+			{
+        		$('#rawr').show();
+        		$('#rawr2').hide();
+        		
+        		document.body.style.backgroundImage = "url('https://cdn.wallpapersafari.com/51/45/3PvngH.jpg')";
 			}
+		    else if(show1 === "true")
+		    {
+		        $('#rawr').hide();
+        		$('#rawr2').show();
+        		
+        		document.body.style.backgroundImage = "url('https://p.motionelements.com/stock-video/business/me6901597-lottery-balls-loopable-background-hd-a0005.jpg')";
+		    }
+		    else if(show != "true" && show1 != "true")
+		    {
+		        $('#welcome').show();
+		        $('#rawr').hide();
+        		$('#rawr2').hide();
+		    }
 			
 			$("#btn").click(function(event){
 				event.preventDefault();
 				$('#rawr').show();
+				$('#rawr2').hide();
+				$('#welcome').hide();
+				
 				localStorage.setItem('show', 'true');
-				//localStorage.removeItem('show');
+				localStorage.removeItem('show1');
+				localStorage.removeItem('show3');
+				
+				document.body.style.backgroundImage = "url('https://cdn.wallpapersafari.com/51/45/3PvngH.jpg')";
 			});
 			
 			$("#btn2").click(function(event){
 				event.preventDefault();
 				$('#rawr').hide();
 				$('#rawr2').show();
+<<<<<<< HEAD
 				localStorage.setItem('show', 'true');
+=======
+				$('#welcome').hide();
+				localStorage.setItem('show1', 'true');
+>>>>>>> 9680f284cee881b6154de679a4b15f56564747a9
 				localStorage.removeItem('show');
+				localStorage.removeItem('show3');
+				
+					document.body.style.backgroundImage = "url('https://p.motionelements.com/stock-video/business/me6901597-lottery-balls-loopable-background-hd-a0005.jpg')";
 			});
 			
+<<<<<<< HEAD
+=======
+			$("#btn3").click(function(event){
+				event.preventDefault();
+				$('#rawr').hide();
+				$('#rawr2').hide();
+				$('#welcome').show();
+				localStorage.setItem('show3', 'true');
+				localStorage.removeItem('show');
+				localStorage.removeItem('show1');
+				
+				document.body.style.backgroundImage = "url('')";
+			});
+			
+>>>>>>> 9680f284cee881b6154de679a4b15f56564747a9
 			$( "#shaked" ).click(function() {
               $( "#toggle" ).effect( "shake" );
             });
@@ -47,6 +135,7 @@
             // Change this value to however many seconds you want to delay the text by.
             var theDelay = 1;
             var timer = setTimeout("showText()",theDelay*1000)
+<<<<<<< HEAD
         }
         function showText(){
             document.getElementById("delayedText").style.visibility = "visible";
@@ -56,20 +145,13 @@
     <style>
         body {
             font-family: "Lato", sans-serif;
+=======
+>>>>>>> 9680f284cee881b6154de679a4b15f56564747a9
         }
-        
-        .sidenav {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: #111;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
+        function showText(){
+            document.getElementById("delayedText").style.visibility = "visible";
         }
+<<<<<<< HEAD
         
         .sidenav a {
             padding: 8px 8px 8px 32px;
@@ -135,15 +217,21 @@
         }
         
         </style>
+=======
+        </script>
+    </head>
+>>>>>>> 9680f284cee881b6154de679a4b15f56564747a9
     <body>
+        
         <div id="mySidenav" class="sidenav">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <a href="#" id = "btn3" onclick="closeNav()">Home</a>
           <a href="#" id = "btn" onclick="closeNav()">8Ball</a>
           <a href="#" id = "btn2" onclick="closeNav()">Lottery</a>
-          <a href="#" onclick="closeNav()">????</a>
         </div>
         
         <div id="main">
+<<<<<<< HEAD
             <span style="float:left; left:0px; top:0px;font-size:30px;cursor:pointer" onclick="openNav()">&#9776;Menu</span>
         </div>
         
@@ -167,7 +255,45 @@
         
         <div id="rawr2" style="display:none;">
  
+=======
+            <span style="float:left; left:0px; top:0px;font-size:30px;cursor:pointer; color:white;" onclick="openNav()" >&#9776;Menu</span>
         </div>
-
+        
+        
+        <div id="welcome" style="display:none;">
+            <p>Welcome!</p>
+        </div>
+        
+        <div id="rawr" style="display:none;">
+            <div id="toggle">
+                <image src= "http://appinventor.mit.edu/explore/sites/all/files/ai2tutorials/magic8ball/magic8ball.jpg" alt="" id="img"></image>
+            </div>
+           <center><h3 style="color:white;">Ask the Magic 8 Ball a question</h3></center>
+           <form>
+           <center><input type=text name=question></center>
+           <center><a href=# id=answer><button>Submit</button></a></center>
+           </form>
+           
+           <div id="delayedText" style="visibility:hidden">
+                	<center><h5 style="color:white;" id=result>answer</h5></center>
+            </div>
+            
+        </div>
+             
+             
+        <div id="rawr2" style="display:none;" >
+            
+            <div id="toggle">
+               <!-- <center><a href=# id=numbers><button>Get new numbers</button></a></center>-->
+                <image src= "http://www.clipartkid.com/images/134/ticket-clip-art-at-clker-com-vector-clip-art-online-royalty-free-PNSq3R-clipart.png" alt="" id="img"></image>
+            </div>
+            <center><h3 style="color:white;">Your lotto numbers for this week.Good Luck!</h3></center>
+             <h2 id="text">{% for num in game_nums %}{{ num }} {% endfor %}</h2>
+               <!-- <h2 id="result1">answer</h2> -->
+                
+                	
+>>>>>>> 9680f284cee881b6154de679a4b15f56564747a9
+        </div>
+        
     </body>
 </html>
