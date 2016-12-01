@@ -12,11 +12,14 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type=text/javascript href="{{ url_for('static', filename='script.js') }}"></script>
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+
+        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
          
         <script type="text/javascript">
         $(function() {
             $('a#answer').bind('click',function() {
-              $.getJSON('/8ball', {
+              $.getJSON('/8ball/', {
                   question: $('input[name="question"]').val(),
               }, function(data) {
                 $("#result").text(data.result);
@@ -282,10 +285,6 @@
             </div>
         </div>
         
-        <div>
-            <span style="float:left; left:0px; top:0px;font-size:30px;cursor:pointer; color:white;" onclick="openNav()" >&#9776;Menu</span>
-        </div>
-        
         <div id="rawr" style="display:none;">
             <div id="toggle">
                 <image src= "http://appinventor.mit.edu/explore/sites/all/files/ai2tutorials/magic8ball/magic8ball.jpg" alt="" id="img"></image>
@@ -293,10 +292,10 @@
            <center><h3 style="color:white;">Ask the Magic 8 Ball a question</h3></center>
            <form>
            <center><input type=text name=question></center>
-           <center><a href=# id=answer><button>Submit</button></a></center>
+           <center><a href=# id=answer><button id="shaked">Submit</button></a></center>
            
            <div id="delayedText" style="visibility:hidden">
-                	<center id="text"><h7 style="color:white;" id= "result">answer</h7></center>
+                	<center id="text"><h7 id= "result">answer</h7></center>
             </div>
         </div>
              
