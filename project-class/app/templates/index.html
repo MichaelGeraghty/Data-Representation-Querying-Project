@@ -12,7 +12,6 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type=text/javascript href="{{ url_for('static', filename='script.js') }}"></script>
         
-       
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
          
         <script type="text/javascript">
@@ -22,6 +21,66 @@
                   question: $('input[name="question"]').val(),
               }, function(data) {
                 $("#result").text(data.result);
+              });
+              return false;
+            });
+          });
+          
+          $(function() {
+            $('a#die').bind('click',function() {
+              $.getJSON('/die/', {
+              }, function(data) {
+                $("#result2").text(data.result2);
+                $("#result3").text(data.result3);
+  
+                if(data.result2 == 1)
+                {
+                    document.getElementById("imageId").src="http://www.clipartkid.com/images/170/dice-6-faces-1-icon-game-clipart-best-clipart-best-WxA1Fn-clipart.png";
+                }
+                else if(data.result3 == 1)
+                {
+                     document.getElementById("imageId2").src="http://www.clipartkid.com/images/170/dice-6-faces-1-icon-game-clipart-best-clipart-best-WxA1Fn-clipart.png";
+                }
+                else if(data.result2 == 2)
+                {
+                    document.getElementById("imageId").src="http://game-icons.net/icons/delapouite/dice/png/dice-six-faces-two.png";
+                }
+                else if(data.result3 == 2)
+                {
+                     document.getElementById("imageId2").src="http://game-icons.net/icons/delapouite/dice/png/dice-six-faces-two.png";
+                }
+                else if(data.result2 == 3)
+                {
+                    document.getElementById("imageId").src="http://image.freepik.com/free-icon/dice-cube-from-top-view-on-the-face-with-three-dots_318-59490.jpg";
+                }
+                else if(data.result3 == 3)
+                {
+                     document.getElementById("imageId2").src="http://image.freepik.com/free-icon/dice-cube-from-top-view-on-the-face-with-three-dots_318-59490.jpg";
+                }
+                else if(data.result2 == 4)
+                {
+                    document.getElementById("imageId").src="http://www.clker.com/cliparts/r/z/d/a/L/V/dice-4-md.png";
+                }
+                else if(data.result3 == 4)
+                {
+                     document.getElementById("imageId2").src="http://www.clker.com/cliparts/r/z/d/a/L/V/dice-4-md.png";
+                }
+                else if(data.result2 == 5)
+                {
+                    document.getElementById("imageId").src="http://www.clipartkid.com/images/25/dice-5-clip-art-at-clker-com-vector-clip-art-online-royalty-free-vcYj2s-clipart.png";
+                }
+                else if(data.result3 == 5)
+                {
+                     document.getElementById("imageId2").src="http://www.clipartkid.com/images/25/dice-5-clip-art-at-clker-com-vector-clip-art-online-royalty-free-vcYj2s-clipart.png";
+                }
+                else if(data.result2 == 6)
+                {
+                     document.getElementById("imageId").src="http://www.clipartkid.com/images/161/clipartbest-com-k5lKJN-clipart.png";
+                }
+                else if(data.result3 == 6)
+                {
+                     document.getElementById("imageId2").src="http://www.clipartkid.com/images/161/clipartbest-com-k5lKJN-clipart.png";
+                }
               });
               return false;
             });
@@ -39,12 +98,15 @@
             });
           });
        */       
-              
             $(document).ready(function(){
 			// use localStorage.removeItem('show'); to unset an item
 			var show = localStorage.getItem('show');
 			var show1 = localStorage.getItem('show1');
 			var show3 = localStorage.getItem('show3');
+			
+			$(window).on( 'resize', function () {
+                $('.half').height( $(window).height() / 2 );
+            }).resize();
 			
 			if(show === "true")
 			{
@@ -65,12 +127,53 @@
 		        $('#welcome').show();
 		        $('#rawr').hide();
         		$('#rawr2').hide();
+        		
+        		document.body.style.backgroundColor = "black";
 		    }
+			
+			$("img.8ball").click(function(event){
+				event.preventDefault();
+				$('#rawr').show();
+				$('#rawr2').hide();
+				$('#welcome').hide();
+				
+				localStorage.setItem('show', 'true');
+				localStorage.removeItem('show1');
+				localStorage.removeItem('show3');
+				
+				document.body.style.backgroundImage = "url('http://cdn.wallpapersafari.com/51/45/3PvngH.jpg')";
+			});
+			
+			$("img.lotto").click(function(event){
+				event.preventDefault();
+				$('#rawr').hide();
+				$('#rawr2').show();
+				$('#welcome').hide();
+				localStorage.setItem('show1', 'true');
+				localStorage.removeItem('show');
+				localStorage.removeItem('show3');
+				
+				document.body.style.backgroundImage = "url('http://p.motionelements.com/stock-video/business/me6901597-lottery-balls-loopable-background-hd-a0005.jpg')";
+			});
+			
+			$("img.die").click(function(event){
+				event.preventDefault();
+				$('#rawr').hide();
+				$('#rawr2').hide();
+				$('#rawr3').show();
+				$('#welcome').hide();
+				localStorage.setItem('rawr3', 'true');
+				localStorage.removeItem('show');
+				localStorage.removeItem('show1');
+				
+				//document.body.style.backgroundColor = "black";
+			});
 			
 			$("#btn").click(function(event){
 				event.preventDefault();
 				$('#rawr').show();
 				$('#rawr2').hide();
+				$('#rawr3').hide();
 				$('#welcome').hide();
 				
 				localStorage.setItem('show', 'true');
@@ -84,6 +187,7 @@
 				event.preventDefault();
 				$('#rawr').hide();
 				$('#rawr2').show();
+				$('#rawr3').hide();
 
 				localStorage.setItem('show', 'true');
 
@@ -101,8 +205,23 @@
 				event.preventDefault();
 				$('#rawr').hide();
 				$('#rawr2').hide();
+				$('#rawr3').hide();
 				$('#welcome').show();
 				localStorage.setItem('show3', 'true');
+				localStorage.removeItem('show');
+				localStorage.removeItem('show1');
+				
+				document.body.style.backgroundImage = "url('')";
+				document.body.style.backgroundColor = "black";
+			});
+			
+			$("#btn4").click(function(event){
+				event.preventDefault();
+				$('#rawr').hide();
+				$('#rawr2').hide();
+				$('#rawr3').show();
+				$('#welcome').hide();
+				localStorage.setItem('rawr3', 'true');
 				localStorage.removeItem('show');
 				localStorage.removeItem('show1');
 				
@@ -145,38 +264,27 @@
           <a href="#" id = "btn3" onclick="closeNav()">Home</a>
           <a href="#" id = "btn" onclick="closeNav()">8Ball</a>
           <a href="#" id = "btn2" onclick="closeNav()">Lottery</a>
+          <a href="#" id = "btn4" onclick="closeNav()">Dice</a>
         </div>
         
         <div id="main">
-            <span style="float:left; left:0px; top:0px;font-size:30px;cursor:pointer" onclick="openNav()">&#9776;Menu</span>
+            <span style="float:left; left:0px; top:0px;font-size:30px;cursor:pointer; color:white;" onclick="openNav()">&#9776;Menu</span>
         </div>
-        
-        <div id="rawr" style="display:none;">
-            <div id="toggle">
-                <image src= "http://appinventor.mit.edu/explore/sites/all/files/ai2tutorials/magic8ball/magic8ball.jpg" alt="" id="img"></image>
-            </div>
-            
-            <form action="" method="post" name="get_question" id="form">
-                {{ form.hidden_tag() }}
-                <label for="question">Your question:</label>
-        		{{ form.question }}</br>
-        		<center><input type="submit" id="shaked"></center>
-        	</form>
-        	
-        	<div id="delayedText" style="visibility:hidden">
-                <h5 id="text">{{response}}</h5>
-            </div>
-            
-        </div>
-        
-        <div id="rawr2" style="display:none;">
- 
-            <span style="float:left; left:0px; top:0px;font-size:30px;cursor:pointer; color:white;" onclick="openNav()" >&#9776;Menu</span>
-        </div>
-        
         
         <div id="welcome" style="display:none;">
-            <p>Welcome!</p>
+            <div class="half">
+                <img src="http://is4.mzstatic.com/image/thumb/Purple1/v4/ad/8e/f2/ad8ef246-b1a6-419a-c407-b4ca7bdc0481/source/1200x630bf.jpg" style="float: left; width: 100%; height: 100%; margin-right: 1%; margin-bottom: 0.5em;" class="8ball">
+            </div>
+            <div>
+                <img src="http://d2tbfnbweol72x.cloudfront.net/wp-content/blogs.dir/1503/files/2014/06/lotto8.jpg" style="float: left; width: 40%;" class="lotto">
+            </div>
+            <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Two_red_dice_01.svg/2000px-Two_red_dice_01.svg.png" style="float: right; width: 40%;" class="die">
+            </div>
+        </div>
+        
+        <div>
+            <span style="float:left; left:0px; top:0px;font-size:30px;cursor:pointer; color:white;" onclick="openNav()" >&#9776;Menu</span>
         </div>
         
         <div id="rawr" style="display:none;">
@@ -188,13 +296,13 @@
            <center><input type=text name=question></center>
            <center><a href=# id=answer><button>Submit</button></a></center>
            </form>
+        </div>
            
-           <div id="delayedText" style="visibility:hidden">
-                	<center><h5 style="color:white;" id=result>answer</h5></center>
-            </div>
+        <div id="delayedText" style="visibility:hidden">
+                	<center id="text"><h7 style="color:white;" id= "result">answer</h7></center>
+        </div>
             
         </div>
-             
              
         <div id="rawr2" style="display:none;" >
             
@@ -206,6 +314,18 @@
              <h2 id="text">{% for num in game_nums %}{{ num }} {% endfor %}</h2>
                <!-- <h2 id="result1">answer</h2> -->
                 
+        </div>
+        
+        <div id="rawr3" style="display:none;" >
+            
+            <div id="toggle">
+                <center><a href=# id=die><button id="dieStyle">Get new die</button></a></center>
+            </div>
+            <div>
+                    <img id="imageId" src="http://www.mywestpet.com/wp-content/uploads/2015/02/Black-square.png" style="float: left; width: 40%; position:absolute;"></img>
+                    <img id="imageId2" src="http://www.mywestpet.com/wp-content/uploads/2015/02/Black-square.png" style="float: right; width: 40%;;"></img>
+                    <center><p id="result1" style="color:red;">asd</p></center>
+            </div>
         </div>
         
     </body>

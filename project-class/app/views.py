@@ -3,7 +3,6 @@ from flask import render_template,request,jsonify
 
 from random import randint
 
-
 """@app.route('/lotto/')
 def new_numbers():
     game_nums = []
@@ -71,3 +70,9 @@ def index():
             game_nums.append(n)
             game_nums.sort()
     return render_template('index.html',game_nums = game_nums)
+
+@app.route('/die/')
+def get_die():
+    a = randint(1,6)
+    b = randint(1,6)
+    return jsonify(result2 = a, result3 = b) 
