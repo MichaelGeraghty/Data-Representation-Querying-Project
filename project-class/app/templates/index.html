@@ -5,16 +5,22 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
+        <!-- Link to bootstrap library -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         
-        
+        <!-- Scripts for functionality, shake effects, side navs -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type=text/javascript href="{{ url_for('static', filename='script.js') }}"></script>
-        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
         <script src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+        
+        <!-- Css -->
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+        
          
         <script type="text/javascript">
+        /* function that gets values from 8ball div and passes to @app.route('/8ball/') */
+        /* receives jsonified string to 8ball div */
         $(function() {
             $('a#answer').bind('click',function() {
               $.getJSON('/8ball/', {
@@ -26,6 +32,8 @@
             });
           });
           
+          /* die function which receives 2 random generated numbers from app.route('/die/') */
+          /* picks images using numbers received and displays images on page */
           $(function() {
             $('a#die').bind('click',function() {
               $.getJSON('/die/', {
@@ -98,16 +106,21 @@
             });
           });
        */       
+            /* function for on page load*/
             $(document).ready(function(){
 			// use localStorage.removeItem('show'); to unset an item
+			/* gets any saved items if returns true then loads that saved page */
 			var show = localStorage.getItem('show');
 			var show1 = localStorage.getItem('show1');
 			var show3 = localStorage.getItem('show3');
 			
+			/* gets half the height of the canvas */
 			$(window).on( 'resize', function () {
                 $('.half').height( $(window).height() / 2 );
             }).resize();
 			
+			/* if show is true then load #rawr which is 8ball rather than welcome page */
+			/* same for show 1 */
 			if(show === "true")
 			{
         		$('#rawr').show();
@@ -128,9 +141,11 @@
 		        $('#rawr').hide();
         		$('#rawr2').hide();
         		
+        		/* uses javascript to set the background color */
         		document.body.style.backgroundColor = "black";
 		    }
 			
+			/* if the home page image of the 8ball is clicked then load 8ball div */
 			$("img.8ball").click(function(event){
 				event.preventDefault();
 				$('#rawr').show();
@@ -141,9 +156,11 @@
 				localStorage.removeItem('show1');
 				localStorage.removeItem('show3');
 				
+				/* uses javascript to set background images */
 				document.body.style.backgroundImage = "url('http://cdn.wallpapersafari.com/51/45/3PvngH.jpg')";
 			});
 			
+			/* if the home page image of the 8ball is clicked then load lotto div */
 			$("img.lotto").click(function(event){
 				event.preventDefault();
 				$('#rawr').hide();
@@ -156,6 +173,7 @@
 				document.body.style.backgroundImage = "url('http://p.motionelements.com/stock-video/business/me6901597-lottery-balls-loopable-background-hd-a0005.jpg')";
 			});
 			
+			/* if the home page image of the 8ball is clicked then load dice div */
 			$("img.die").click(function(event){
 				event.preventDefault();
 				$('#rawr').hide();
@@ -169,6 +187,7 @@
 				//document.body.style.backgroundColor = "black";
 			});
 			
+			/* if the button in sideNav for 8ball is clicked load 8ball div*/
 			$("#btn").click(function(event){
 				event.preventDefault();
 				$('#rawr').show();
@@ -183,6 +202,7 @@
 				document.body.style.backgroundImage = "url('https://cdn.wallpapersafari.com/51/45/3PvngH.jpg')";
 			});
 			
+			/* if the button in sideNav for lotto is clicked load lotto div*/
 			$("#btn2").click(function(event){
 				event.preventDefault();
 				$('#rawr').hide();
@@ -200,7 +220,7 @@
 					document.body.style.backgroundImage = "url('https://p.motionelements.com/stock-video/business/me6901597-lottery-balls-loopable-background-hd-a0005.jpg')";
 			});
 			
-
+            /* if the button in sideNav for homePage is clicked load homePage div*/
 			$("#btn3").click(function(event){
 				event.preventDefault();
 				$('#rawr').hide();
@@ -215,6 +235,7 @@
 				document.body.style.backgroundColor = "black";
 			});
 			
+			/* if the button in sideNav for dice is clicked load dice div*/
 			$("#btn4").click(function(event){
 				event.preventDefault();
 				$('#rawr').hide();
@@ -228,12 +249,13 @@
 				document.body.style.backgroundImage = "url('')";
 			});
 			
-
+            /* gives shake functionality for the 8ball and 8balls text */
 			$( "#shaked" ).click(function() {
               $( "#toggle" ).effect( "shake" );
             });
 		});
-        		
+        
+        /* side nav properties to reveal and hide*/	
 		function openNav() {
             document.getElementById("mySidenav").style.width = "250px";
             document.getElementById("main").style.marginLeft = "250px";
@@ -258,7 +280,8 @@
         </script>
     </head>
     <body>
-        
+        <!-- sideNav div -->
+        <!-- href and if used to navigate to different pages -->
         <div id="mySidenav" class="sidenav">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
           <a href="#" id = "btn3" onclick="closeNav()">Home</a>
@@ -267,10 +290,13 @@
           <a href="#" id = "btn4" onclick="closeNav()">Dice</a>
         </div>
         
+        <!-- Reveals sideNav -->
         <div id="main">
             <span style="float:left; left:0px; top:0px;font-size:30px;cursor:pointer; color:white;" onclick="openNav()">&#9776;Menu</span>
         </div>
         
+        <!-- Welcome div -->
+        <!-- Has 3 images, one using .half in css to half its window height -->
         <div id="welcome" style="display:none;">
             <div class="half">
                 <img src="http://is4.mzstatic.com/image/thumb/Purple1/v4/ad/8e/f2/ad8ef246-b1a6-419a-c407-b4ca7bdc0481/source/1200x630bf.jpg" style="float: left; width: 100%; height: 100%; margin-right: 1%; margin-bottom: 0.5em;" class="8ball">
@@ -283,20 +309,24 @@
             </div>
         </div>
         
+        <!-- 8ball Div -->
         <div id="rawr" style="display:none;">
             <div id="toggle">
                 <image src= "http://appinventor.mit.edu/explore/sites/all/files/ai2tutorials/magic8ball/magic8ball.jpg" alt="" id="img"></image>
             </div>
            <center><h3 style="color:white;">Ask the Magic 8 Ball a question</h3></center>
            <form>
+           <!-- question is passed to javascript by stating name=question and receives input -->
            <center><input type=text name=question></center>
+           <!-- id=shaked makes the image shake -->
            <center><a href=# id=answer><button id="shaked">Submit</button></a></center>
            
            <div id="delayedText" style="visibility:hidden">
                 	<center id="text"><h7 id= "result">answer</h7></center>
             </div>
         </div>
-             
+        
+        <!-- Div for lotto -->
         <div id="rawr2" style="display:none;" >
             
             <div id="toggle">
@@ -304,20 +334,24 @@
                 <image src= "http://www.clipartkid.com/images/134/ticket-clip-art-at-clker-com-vector-clip-art-online-royalty-free-PNSq3R-clipart.png" alt="" id="img"></image>
             </div>
             <center><h3 style="color:white;">Your lotto numbers for this week.Good Luck!</h3></center>
+            <!-- numbers saved in array and uses for to read each out to html -->
              <h2 id="text">{% for num in game_nums %}{{ num }} {% endfor %}</h2>
                <!-- <h2 id="result1">answer</h2> -->
                 
         </div>
         
+        <!-- Dice div -->
         <div id="rawr3" style="display:none;" >
             
             <div id="toggle">
                 <center><a href=# id=die><button id="dieStyle">Get new die</button></a></center>
             </div>
             <div>
+                <!-- sets images to black, changes to image of dice depending on numbers received from views.py -->
                     <img id="imageId" src="http://www.mywestpet.com/wp-content/uploads/2015/02/Black-square.png" style="float: left; width: 40%; position:absolute;"></img>
                     <img id="imageId2" src="http://www.mywestpet.com/wp-content/uploads/2015/02/Black-square.png" style="float: right; width: 40%;;"></img>
-                    <center><p id="result1" style="color:red;">asd</p></center>
+                    <!-- calls dice variable -->
+                    <!--<center><p id="result1" style="color:red;">asd</p></center>-->
             </div>
         </div>
         
